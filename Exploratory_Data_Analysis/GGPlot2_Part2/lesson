@@ -29,15 +29,8 @@
 - Class: text
   Output: There are 3 more. STATS are statistical transformations such as binning, quantiles, and smoothing which ggplot2 applies to the data. SCALES show what coding an aesthetic map uses (for example, male = red, female = blue). Finally, the plots are depicted on a COORDINATE SYSTEM. When you use qplot these were taken care of for you.
 
-- Class: mult_question
-  Output:  Do you remember what the "artist's palette" model means in the context of plotting?
-  AnswerChoices: we draw pictures; we mix paints; plots are built up in layers; things get messy
-  CorrectAnswer: plots are built up in layers
-  AnswerTests: omnitest(correctVal='plots are built up in layers')
-  Hint: Think about layers and creating a picture in several steps.
-
 - Class: text
-  Output: As in the base plotting system (and in contrast to the lattice system), when building plots with ggplot2,  the plots are built up in layers, maybe in several steps. You can plot the data, then overlay a summary (for instance, a regression line or smoother) and then add any metadata and annotations you need.
+  Output: As in the base plotting system, when building plots with ggplot2,  the plots are built up in layers, maybe in several steps (this is called "the artist's palette" in plotting). You can plot the data, then overlay a summary (for instance, a regression line or smoother) and then add any metadata and annotations you need.
 
 - Class: cmd_question
   Output: We'll keep using the mpg data that comes with the ggplot2 package. Recall the versatility of qplot. Just as a refresher, call qplot now with 5 arguments. The first 3 deal with data - displ, hwy, and data=mpg. The fourth is geom set equal to the concatenation of the two strings, "point" and "smooth". The fifth is facets set equal to the formula .~drv. Try this now. 
@@ -49,16 +42,16 @@
   Output:  We see a 3 facet plot, one for each drive type (4, f, and r). Now we'll see how ggplot works. We'll build up a similar plot using the basic components of the package. We'll do this in a series of steps. 
 
 - Class: cmd_question
-  Output: First we'll create a variable g by assigning to it the output of a call to ggplot with 2 arguments. The first is mpg (our dataset) and the second will tell ggplot what we want to plot, in this case, displ and hwy. These are what we want our aesthetics to represent so we enclose these as two arguments to the function aes. Try this now. 
+  Output: First we'll create a variable g by assigning to it the output of a call to ggplot with 2 arguments. The first is mpg (our dataset) and the second will tell ggplot what we want to plot, in this case, displ and hwy. These are what we want our aesthetics to represent so we enclose these as two arguments to the function "aes". Try this now. 
   CorrectAnswer: g <- ggplot(mpg,aes(displ,hwy))
   AnswerTests: expr_creates_var("g"); omnitest(correctExpr='g <- ggplot(mpg,aes(displ,hwy))')
   Hint: Type g <- ggplot(mpg, aes(displ,hwy) ) at the command prompt.
 
 - Class: text
-  Output: Notice that nothing happened? As in the lattice system, ggplot created a graphical object which we assigned to the variable g. 
+  Output: Notice that nothing happened? Ggplot created a graphical object which we assigned to the variable g. 
 
 - Class: cmd_question
-  Output: Run the R command summary with g as its argument to see what g contains.
+  Output: Run the R command "summary" with g as its argument to see what g contains.
   CorrectAnswer: summary(g)
   AnswerTests: omnitest(correctExpr='summary(g)')
   Hint: Type summary(g) at the command prompt.
@@ -76,7 +69,7 @@
   Hint: Type g+geom_point() at the command prompt.
 
 - Class: cmd_question
-  Output: By calling the function geom_point you added a layer. By not assigning the expression to a variable you displayed a plot. Notice that you didn't have to pass any arguments to the function geom_point. That's because the object g has all the data stored in it. (Remember you saw that when you ran summary on g before.) Now use the expression you just typed (g + geom_point()) and add to it another layer, a call to geom_smooth(). Notice the red message R gives you.
+  Output: By calling the function geom_point you added a layer. By not assigning the expression to a variable, you displayed a plot. Notice that you didn't have to pass any arguments to the function geom_point. That's because the object g has all the data stored in it. (Remember you saw that when you ran summary on g before.) Now use the expression you just typed (g + geom_point()) and add to it another layer, a call to geom_smooth(). Notice the red message R gives you.
   CorrectAnswer: g+geom_point()+geom_smooth()
   AnswerTests: omnitest(correctExpr='g+geom_point()+geom_smooth()')
   Hint: Type g+geom_point()+geom_smooth() at the command prompt.
@@ -88,7 +81,7 @@
   Hint: Type g+geom_point()+geom_smooth(method="lm") at the command prompt.
 
 - Class: cmd_question
-  Output: By changing the smoothing function to "lm" (linear model) ggplot2 generated a regression line through the data. Now recall the expression you just used and add to it another call, this time to the function facet_grid. Use the formula . ~ drv as it argument. Note that this is the same type of formula used in the calls to qplot. 
+  Output: By changing the smoothing function to "lm" (linear model) ggplot2 generated a regression line through the data. Now recall the expression you just used and add to it another call, this time to the function facet_grid. Use the formula . ~ drv as its argument. Note that this is the same type of formula used in the calls to qplot. 
   CorrectAnswer: g+geom_point()+geom_smooth(method="lm") + facet_grid(.~drv)
   AnswerTests: omnitest(correctExpr='g+geom_point()+geom_smooth(method="lm") + facet_grid(.~drv)')
   Hint: Type g+geom_point()+geom_smooth(method="lm") + facet_grid(.~drv) at the command prompt.
@@ -151,7 +144,7 @@
   Output: One final note before we go through a more complicated, layered ggplot example, and this concerns the limits of the axes. We're pointing this out to emphasize a subtle difference between ggplot and the base plotting function plot.
 
 - Class: cmd_question
-  Output: We've created some random x and y data, called myx and myy, components of a dataframe called testdat. These represent 100 random normal points, except halfway through, we made one of the points be an outlier. That is, we set its y-value to be out of range of the other points. Use the base plotting function plot to create a line plot of this data. Call it with 4 arguments - myx, myy, type="l", and ylim=c(-3,3). The type="l" tells plot you want to display the data as a line instead of as a scatterplot.
+  Output: We've created some random x and y data, called myx and myy, components of a dataframe called testdat. These represent 100 random normal points, except halfway through, we made one of the points be an outlier. That is, we set its y-value to be out of range of the other points. Use the base plotting function plot to create a line plot of this data. Call it with 4 arguments - myx, myy, type="l", and ylim=c(-3,3). The type="l" tells the base plot-function you want to display the data as a line instead of as a scatterplot.
   CorrectAnswer: plot(myx, myy, type = "l", ylim = c(-3,3))
   AnswerTests: omnitest(correctExpr='plot(myx, myy, type = "l", ylim = c(-3,3))')
   Hint: Type plot(myx, myy, type = "l", ylim = c(-3,3)) at the command prompt.
