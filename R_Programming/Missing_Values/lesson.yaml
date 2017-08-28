@@ -7,7 +7,7 @@
   Version: 2.2.0
 
 - Class: text
-  Output: Missing values play an important role in statistics and data analysis. Often, missing values must not be ignored, but rather they should be carefully studied to see if there's an underlying pattern or cause for their missingness.
+  Output: Missing values or missing data, occur when no data value is stored for the variable in an observation. For example, when a subject did not complete all questions from the questionnaire. These missing values can play an important role in statistics and data analysis. Often, missing values must not be ignored, but rather they should be carefully studied to see if there's an underlying pattern or cause for their missingness.
 
 - Class: text
   Output: In R, NA is used to represent any value that is 'not available' or 'missing' (in the statistical sense). In this lesson, we'll explore missing values further.
