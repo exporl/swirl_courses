@@ -1,0 +1,645 @@
+
+- Class: meta
+  Course: Mathematical Biostatistics Boot Camp
+  Lesson: Errors Power and Sample Size
+  Author: Nick Carchedi
+  Type: Standard
+  Organization: JHU Biostatistics
+  Version: 1.0.0
+  
+- Class: text
+  Output: In this lesson, we will discuss type I and type II errors as well as the
+    closely related concepts of power and sample size calculation.
+
+- Class: text
+  Output: A type I error, also known as a false positive, is the probability of rejecting
+    the null hypothesis when the null hypothesis is true. When performing a statistical
+    test, the type I error rate is typically predetermined by the statistician performing
+    the test and is equivalent to the significance level of the test. Type I error
+    is generally represented by the Greek letter 'alpha'.
+
+- Class: mult_question
+  Output: Another name for a type I error is ___________.
+  AnswerChoices: beta; true positive; false negative; alpha
+  CorrectAnswer: alpha
+  AnswerTests: word= alpha
+  Hint: Review the previous paragraph.
+
+- Class: text
+  Output: On the other hand, a type II error, also known as a false negative, is the
+    probability of failing to reject the null hypothesis when the null hypothesis
+    is false. Notice that we intentionally avoid saying that one 'accepts the null
+    hypothesis' in favor of saying that one 'fails to reject the null hypothesis'.
+    This is comparable to the way in which a court of law avoids declaring someone
+    to be innocent in favor of declaring someone to be not guilty. Type II error is
+    generally represented by the Greek letter 'beta'.
+
+- Class: mult_question
+  Output: Another name for a type II error is ___________.
+  AnswerChoices: false positive; false negative; alpha; true positive
+  CorrectAnswer: false negative
+  AnswerTests: word= false negative
+  Hint: Review the previous paragraph.
+
+- Class: text
+  Output: 'The concept of power is closely related to that of a type II error. Power
+    is the probability of correctly rejecting the null hypothesis when the null hypothesis
+    is false. Since the type II error rate is the probability of INCORRECTLY failing to
+    reject the null hypothesis and power is the probability of CORRECTLY rejecting the null
+    hypothesis, power is therefore equal to one minus the type II error rate (or in
+    mathematical terms, power = 1 - beta). '
+
+- Class: mult_question
+  Output: Another name for power is ___________.
+  AnswerChoices: true positive; beta; true negative; false negative
+  CorrectAnswer: true positive
+  AnswerTests: word= true positive
+  Hint: Power is the probability of CORRECTLY detecting something (i.e. having a 'positive'
+    test result).
+
+- Class: text
+  Output: You are part of a research team conducting an experiment on the effectiveness
+    of a new test that is designed to detect the presence of a deadly disease. Existing
+    methods of detecting this disease are extremely reliable, but also very expensive.
+    The appeal of this new test is that it is significantly cheaper than the existing
+    method, although it may not be quite as reliable.
+
+- Class: text
+  Output: 'To estabilish the validity of your new test, your team performs both the
+    new test and the existing test on a large group of consenting individuals. It
+    is assumed that the diagnosis given by the existing test is the true diagnosis.
+    The new test performs as follows: Among people who actually have the disease (as
+    diagnosed by the existing test) the new test correctly diagnoses 80% as having
+    the disease and fails to correctly diagnose the remaining 20%. Among people who
+    do not have the disease, the new test incorrectly diagnoses 4% as having the disease
+    and correctly diagnoses the remaining 96% as not having the disease. Keep in mind
+    that when performing a diagnostic test, the null hypothesis is always that the
+    patient does not have the disease of interest.'
+
+- Class: mult_question
+  Output: What is the type I error of this test?
+  AnswerChoices: 80%; 20%; 4%; 96%
+  CorrectAnswer: 4%
+  AnswerTests: word= 4%
+  Hint: Type I error is the probability of incorrectly diagnosing someone as having
+    the disease when she is in fact healthy.
+
+- Class: mult_question
+  Output: What is the type II error of this test?
+  AnswerChoices: 80%; 20%; 4%; 96%
+  CorrectAnswer: 20%
+  AnswerTests: swirl1cmd= 20%
+  Hint: Type II error is the probability of incorrectly diagnosing someone as healthy
+    when he does in fact have the disease.
+
+- Class: mult_question
+  Output: What is the power of this test?
+  AnswerChoices: 80%; 20%; 4%; 96%
+  CorrectAnswer: 80%
+  AnswerTests: word= 80%
+  Hint: Power is the probability of correctly diagnosing someone as having the disease
+    when she does in fact have the disease.
+
+- Class: text
+  Output: For the remainder of the lesson, we will shift our focus to power and its
+    important role in sample size calculations for experiments.
+
+- Class: text
+  Output: In the lecture, you learned how to compute power given a large sample size
+    and a known population standard deviation (or sigma). This is an important calculation
+    to understand, we will get back to this later on in this lesson.
+
+- Class: text
+  Output: For now, our focus will be on reversing this calculation to compute the
+    sample size required to achieve a desired level of power (again, given a known
+    sigma.) This calculation is most commonly used when designing experiments in order
+    to ensure sample size is large enough to guarantee a powerful result.
+
+- Class: text
+  Output: 'Note that assuming a known sigma allows us to use the standard normal distribution
+    in place of the t-distribution. We make this simplifying assumption here for the
+    sake of conveying the concept at hand.'
+
+- Class: text
+  Output: 'Here are the values we need for our first sample size calculation: population
+    standard deviation (sigma), the difference in means we''d like to be able to detect
+    (delta), the z-critical value for our chosen significance level, and the z-critical
+    value corresponding to our desired level of power.'
+
+- Class: text
+  Output: Let's work through an example. Pretend a road by your house has a posted
+    speed limit of 65 miles per hour. You are interested in knowing if the true average
+    speed at which cars travel on this road during rush hour is greater than or equal
+    to 5 miles per hour ABOVE the speed limit (delta). To determine this, you will
+    measure the speed at which a random selection of cars passes you on the road during
+    rush hour. Assume a significance level of 0.05 (alpha) and that the population
+    standard deviation in speed among all cars at this time is 10 miles per hour (sigma).
+    Let's determine how many cars you will need to record so that you have an 80%
+    chance of detecting a true difference of 5 or more miles per hour (power).
+
+- Class: mult_question
+  Output: For this experiment, are we interested in a one-sided or two-sided test?
+  AnswerChoices: One-sided; Two-sided; Neither, that's a trick question!
+  CorrectAnswer: One-sided
+  AnswerTests: word= One-sided
+  Hint: In this example, are you interested in knowing whether cars are travelling
+    at speeds lower than the posted speed limit?
+
+- Class: cmd_question
+  Output: Now let's define the variables we'll use in our sample size calculation.
+    Assign the appropriate value to a new variable called 'sigma'.
+  CorrectAnswer: sigma <- 10
+  AnswerTests: swirl1cmd=sigma <- 10
+  Hint: Sigma represents the true population standard deviation of speeds.
+
+- Class: cmd_question
+  Output: Assign the appropriate value to a new variable called 'delta'.
+  CorrectAnswer: delta <- 5
+  AnswerTests: swirl1cmd=delta <- 5
+  Hint: Delta represents the difference in true average speeds that you would like
+    to be able to detect.
+
+- Class: cmd_question
+  Output: Since our significance level is 0.05, we need to find the z-critical value
+    for which 5% of the standard normal distribution lies above it. In other words,
+    95% of the standard normal distribution falls below this point. This '95th percentile'
+    is also called a '0.95 quantile', and is thus found with the 'qnorm' function
+    in R ('q' for 'quantile' and 'norm' for 'normal'). Use this function now on the
+    value 0.95 and assign the result to a new variable called 'zAlpha'.
+  CorrectAnswer: zAlpha <- qnorm(0.95)
+  AnswerTests: swirl1cmd=zAlpha <- qnorm(0.95)
+  Hint: Type 'qnorm(0.95)' to find the value of the 0.95 quantile.
+
+- Class: cmd_question
+  Output: Since our desired power level is 80%, that means that we want to design
+    our study in such a way that we have an 80% chance of correctly rejecting our
+    null hypothesis. Thus our corresponding z-critical value should have 80% of the
+    standard normal distribution lying above it and hence 20% below it. Use the 'qnorm'
+    function again to find the 20th percentile and assign the result to a new variable
+    called 'zBeta'.
+  CorrectAnswer: zBeta <- qnorm(0.20)
+  AnswerTests: swirl1cmd=zBeta <- qnorm(0.20)
+  Hint: The 20th percentile is also known as the 0.20 quantile and can be found in
+    the same way as you found the 0.95 quantile above.
+
+- Class: text
+  Output: We now have everything we need to compute our required sample size. Since
+    it's a bit challenging to express the sample size formula in words, I'm going
+    to give you the code for computing it below.
+
+- Class: cmd_question
+  Output: 'To compute the sample size required to achieve 80% power in our example,
+    type the following: ''(sigma / delta)^2 * (zAlpha - zBeta)^2''. Note that ''x^2''
+    is R notation for ''x-squared'' or ''x to the power of 2''.'
+  CorrectAnswer: (sigma / delta)^2 * (zAlpha - zBeta)^2
+  AnswerTests: swirl1cmd=(sigma / delta)^2 * (zAlpha - zBeta)^2
+  Hint: Type '(sigma / delta)^2 * (zAlpha - zBeta)^2' and press Enter.
+
+- Class: text
+  Output: Good job! As you can see, we need to measure the speed of at least 25 cars to obtain a power of 80%.
+
+- Class: text
+  Output: Now that you've computed the required sample size manually, let's perform
+    the same task using a function from the R package called 'pwr'. In case you're
+    new to R packages, they are simply libraries of additional functions that people
+    like you have created for everyone to use. Normally,  you would have to load a
+    new package on your own using the 'library' function, but for simplicity we have
+    already done this for you here.
+
+- Class: text
+  Output: 'The function we will use is called ''pwr.norm.test'' and it will automatically
+    generate the sample size required for 80% power once we specify the necessary
+    information. Here are the items we need to give it: effect size (which is the
+    difference we wish to detect divided by sigma), significance level, power, and
+    whether we are conducting a one- or two-sided test.'
+
+- Class: cmd_question
+  Output: First, compute the effect size using the variables 'delta' and 'sigma',
+    both of which you've already computed. Save the result in a new variable called
+    'effectSize'.
+  CorrectAnswer: effectSize <- delta / sigma
+  AnswerTests: swirl1cmd=effectSize <- delta / sigma
+  Hint: Divide 'delta' by 'sigma' and assign the result to a new variable called 'effectSize'.
+
+- Class: text
+  Output: We already know the significance and power levels that we want and we are
+    interested in a one-sided test. In this case, our one-sided test applies only
+    to the case when the true speed is GREATER or equal to 5 miles per hour above
+    the posted speed limit. Therefore, we will specifiy the test type as "greater".
+
+- Class: cmd_question
+  Output: 'You now have everything you need to call the ''pwr.norm.test'' function.
+    Here is the format: ''pwr.norm.test(d=effectSize, sig.level=0.05, power=0.80,
+    alternative="greater")''. Enter this now.'
+  CorrectAnswer: pwr.norm.test(d=effectSize, sig.level=0.05, power=0.80, alternative="greater")
+  AnswerTests: swirl1cmd=pwr.norm.test(d=effectSize, sig.level=0.05, power=0.80, alternative="greater")
+  Hint: Type 'pwr.norm.test(d=effectSize, sig.level=0.05, power=0.80, alternative="greater")'
+    and press Enter.
+
+- Class: text
+  Output: This function provides several items of interest, but the only one we are
+    concerned with here is the value of 'n', which is our sample size required to
+    achieve a power of 80% in this scenario. You'll notice that it perfectly matches
+    the result you got when doing the manual calculation.
+
+- Class: text
+  Output: Since the sample size is reported as a decimal number, it is good practice
+    to round up to the nearest whole number since we generally can't study a fraction
+    of a car (person, mouse, etc.)
+
+- Class: text
+  Output: Up until this point, we've assumed a known population standard deviation
+    (sigma). Sometimes this is available if a subject has been studied extensively,
+    but this may often not be the case. If you are required to compute sigma from
+    the data, then using a t-test is more appropriate. Nevertheless, we will not discuss this type of calculations in this lesson.
+
+- Class: text
+  Output: Now, we'll further discuss POWER, which  is the probability of rejecting the null hypothesis when it is false, which is good and proper. 
+
+- Class: text
+  Output: Hence you want more POWER.
+
+- Class: text
+  Output: Power comes into play when you're designing an experiment, and in particular, if you're trying to determine if a null result (failing to reject a null hypothesis) is meaningful. For instance, you might have to determine if your sample size was big enough to yield a meaningful, rather than random, result.
+
+- Class: text
+  Output: Power gives you the opportunity to detect if your ALTERNATIVE hypothesis is true. 
+
+- Class: mult_question
+  Output: Do you recall the definition of a Type II error?  Remember, errors are bad.
+  AnswerChoices: Rejecting a true null hypothesis; Accepting a false null hypothesis; Miscalculating a t score; Misspelling the word hypothesis
+  CorrectAnswer: Accepting a false null hypothesis
+  AnswerTests: word= Accepting a false null hypothesis
+  Hint: Take the courtroom as an example. Letting a guilty person walk, accepting the null hypothesis of innocence, is a Type II error.
+
+- Class: text
+  Output: Beta is the probability of a Type II error, accepting a false null hypothesis;  the complement of this is obviously (1 - beta) which represents the probability of rejecting a false null hypothesis. This is good and this is POWER!
+
+- Class: text
+  Output: We'll consider the following example. A respiratory disturbance index (RDI) of more than 30 events / hour is considered evidence of severe sleep disordered breathing (SDB). Suppose that in a sample of 100 overweight subjects with other risk factors for SDB at a sleep clinic, the mean RDI (X') was 32 events / hour with a standard deviation (s) of 10 events / hour.
+
+- Class: text
+  Output: We want to test the null hypothesis H_0 that mu = 30. Our alternative hypothesis H_a is mu>30. Here mu represents the hypothesized population mean RDI.
+ 
+- Class: text
+  Output: Suppose we're testing a null hypothesis H_0 with an alpha level of .05. Since H_a proposes that mu > 30 (the mean hypothesized by H_0), power is the probability that the true mean mu is greater than the (1-alpha) quantile or qnorm(.95). For  simplicity, assume  we're working with normal distributions of which we know the variances.
+
+- Class: figure 
+  Output: Here's a picture representing hypothesis testing. The shaded portion represents 5% of the area under the curve. If a test statistic fell in this shaded portion we would reject H_0  because the sample mean is too far from the mean (center) of the distribution hypothesized by H_0. Instead we would favor H_a, that  mu > 30. This happens with probability .05.
+  Figure: conf_5pct.R
+  FigureType: new
+
+- Class: text 
+  Output: You might well ask, "What does this have to do with POWER?" Good question. We'll look at some pictures to show you.
+
+- Class: text 
+  Output: First we have to emphasize a key point. The two hypotheses, H_0 and H_a, actually represent two distributions since they're talking about means or centers of distributions. H_0 says that the mean is mu_0 (30 in our example) and H_a says that the mean is mu_a. 
+
+- Class: text 
+  Output: We're assuming normality and equal variance, say sigma^2/n, for both hypotheses, so under H_0, X'~ N(mu_0, sigma^2/n) and under H_a, X'~ N(mu_a, sigma^2/n).
+
+- Class: figure 
+  Output: Here's a picture with the two distributions. We've drawn a vertical line at our favorite spot, at the 95th percentile of the red distribution. To the right of the line lies 5% of the red distribution.
+  Figure: twoDistros.R
+  FigureType: new
+
+- Class: mult_question
+  Output: Quick quiz! Which distribution represents H_0?
+  AnswerChoices: the red; the blue
+  CorrectAnswer:  the red
+  AnswerTests: word=the red
+  Hint:  The two distributions have the same spread (variance). They differ in their means (centers). Which has a mean equal to that hypothesized by H_0?
+
+- Class: mult_question
+  Output: Which distribution represents H_a?
+  AnswerChoices: the red; the blue
+  CorrectAnswer:  the blue
+  AnswerTests: word=the blue
+  Hint:  The two distributions have the same spread (variance). They differ in their means (centers). Which has a mean different than that hypothesized by H_0?
+
+- Class: mult_question
+  Output: From the picture, what is the mean proposed by H_a?
+  AnswerChoices: 30; 28; 32; 36; 
+  CorrectAnswer:  32
+  AnswerTests: word=32
+  Hint:  At what value of mu does does the center (highest point) of the blue distribution fall?
+
+- Class: text
+  Output: See how much of the blue distribution lies to the right of that big vertical line? 
+
+- Class: text
+  Output: That, my friend, is POWER! 
+
+- Class: text
+  Output: It's the area under the blue curve (H_a) to the right of the vertical line. 
+
+- Class: figure 
+  Output: Note that the placement of the vertical line depends on the null distribution. Here's another picture with fatter distributions. The vertical line is still at the 95th percentile of the null (red) distribution and 5% of the distribution still lies to its right. The line is calibrated to mu_0 and the variance.
+  Figure: twoDistros_fat.R
+  FigureType: new
+  
+- Class: figure 
+  Output: Back to our original picture.
+  Figure: twoDistros.R
+  FigureType: new
+
+- Class: cmd_question
+  Output:  Now we will adjust our plot, so you can see H_a in action. We've fixed mu_0 at 30, sigma (standard deviation) at 4 and n (sample size) at 16. The function myplot just needs an alternative mean, mu_a, as argument. Run myplot now with an argument of 34 to see what it does.
+  CorrectAnswer: myplot(34)
+  AnswerTests: swirl1cmd= myplot(34)
+  Hint: Type myplot(34) at the command prompt.
+
+- Class: cmd_question
+  Output:  The distribution represented by H_a moved to the right, so almost all (100%) of the blue curve is to the right of the vertical line, indicating that with mu_a=34, the test is more powerful, i.e., there's a higher probability that it's correct to reject the null hypothesis since it appears false. Now try myplot with an argument of 33.3.
+  CorrectAnswer: myplot(33.3)
+  AnswerTests: swirl1cmd= myplot(33.3)
+  Hint: Type myplot(33.3) at the command prompt.
+
+- Class: cmd_question
+  Output:  This isn't as powerful as the test with mu_a=34 but it makes a pretty picture. Now try myplot with an argument of 30.
+  CorrectAnswer: myplot(30)
+  AnswerTests: swirl1cmd= myplot(30)
+  Hint: Type myplot(30) at the command prompt.
+
+- Class: text
+  Output: Uh Oh! Did the red curve disappear? No. it's just under the blue curve. The power now, the area under the blue curve to the right of the line, is exactly 5% or alpha!
+
+- Class: text
+  Output: So what did we learn?
+
+- Class: text
+  Output: First, power is a function that depends on a specific value of an alternative mean, mu_a, which is any value greater than mu_0, the mean hypothesized by H_0. (Recall that H_a specified mu>30.)
+
+- Class: text
+  Output: Second, if mu_a is much bigger than mu_0=30 then the power (probability) is bigger than if mu_a is close to 30. As mu_a approaches 30, the mean under H_0, the power approaches alpha.
+
+- Class: cmd_question
+  Output:  Just for fun try myplot with   an argument of 28.
+  CorrectAnswer: myplot(28)
+  AnswerTests: swirl1cmd= myplot(28)
+  Hint: Type myplot(28) at the command prompt.
+
+- Class: text
+  Output: We see that the blue curve has moved to the left of the red, so the area under it, to the right of the line, is less than the 5% under the red curve. This then is even less powerful and contradicts H_a so it's not worth looking at.
+
+- Class: figure 
+  Output: Here's a picture of the power curves for different sample sizes. The alternative means, the mu_a's, are plotted along the horizontal axis and power along the vertical.
+  Figure: powerCurve_n.R
+  FigureType: new 
+
+- Class: mult_question
+  Output: What does the graph show us about mu_a?
+  AnswerChoices: as it gets bigger, it gets more powerful; as it gets bigger, it gets less powerful; power is independent of mu_a
+  CorrectAnswer: as it gets bigger, it gets more powerful
+  AnswerTests: word=as it gets bigger, it gets more powerful
+  Hint: As you move to the right along the horizontal axis, does the line go up or down?
+
+- Class: mult_question
+  Output: What does the graph show us about sample size?
+  AnswerChoices: as it gets bigger, it gets more powerful; as it gets bigger, it gets less powerful; power is independent of sample size
+  CorrectAnswer: as it gets bigger, it gets more powerful
+  AnswerTests: word=as it gets bigger, it gets more powerful
+  Hint: You have to check the color key. The purple line represents a bigger sample size than the red or blue. This purple line goes up faster than any of the other lines.
+
+- Class: text
+  Output: Now back to numbers. Our test for determining rejection of H_0 involved comparing a test statistic, namely Z=(X'-30)/(sigma/sqrt(n)), against some quantile, say Z_95, which depended on our level size alpha (.05 in this case). H_a proposed that mu > mu_0, so we tested if Z>Z_95.  This is equivalent to X' > Z_95 * (sigma/sqrt(n)) + 30, right?
+
+- Class: text
+  Output: There exists an R function "pnorm", which gives us the probability that a value drawn from a normal distribution is greater or less than/equal to a specified quantile argument depending on the flag "lower.tail". If lower.tail=TRUE, this gives us the probability that a random draw from the distribution is less than or equal to the argument. If lower.tail=FALSE, this gives us the probability that a random draw from the distribution is greater than the argument. The function also takes a mean and standard deviation as arguments. 
+
+- Class: text
+  Output: Suppose we call pnorm with the quantile 30 + Z_95 * (sigma/sqrt(n)) and specify mu_a as our mean argument. This would return a probability which we can interpret as POWER. Why?
+
+- Class: figure
+  Output: Recall our picture of two distributions. 30 + Z_95 * (sigma/sqrt(n)) represents the point at which our vertical line falls. It's the point on the null distribution at the (1-alpha) level.
+  Figure: twoDistros.R
+  FigureType: new
+
+- Class: mult_question
+  Output: Study this picture. Calling pnorm with 30 + Z_95 * (sigma/sqrt(n)) as the quantile and mu_a, say 32, as the mean and lower.tail=FALSE does what?
+  AnswerChoices: returns the area under the blue curve to the right of the line; returns the area under the blue curve to the left of the line; returns the area under the red curve to the right of the line; returns the area under the red curve to the left of the line
+  CorrectAnswer: returns the area under the blue curve to the right of the line
+  AnswerTests: word=returns the area under the blue curve to the right of the line
+  Hint: The argument lower.tail=FALSE is a big clue. It indicates we should look to the right of a line. The mean argument is the second clue. It specifies which distribution (red or blue) to examine. 
+
+- Class: mult_question
+  Output: Let's try some examples now. Before we do, what do we know pnorm will return if we specify a quantile less than the mean?
+  AnswerChoices: an answer less than .50; an answer dependent on alpha; an answer dependent on beta; an answer greater than 1
+  CorrectAnswer: an answer less than .50
+  AnswerTests: word=an answer less than .50
+  Hint: There are several red herrings in the choices. First pnorm will NEVER return a value greater than 1 because density functions by definition have areas equal to 1. We haven't specified an alpha or beta either. The function pnorm just needs a quantile, mean, and standard deviation. By default it looks at the lower tail of the distribution. That leaves one choice.
+
+- Class: cmd_question
+  Output: First, define a variable z as qnorm(.95) 
+  CorrectAnswer: z <- qnorm(.95)
+  AnswerTests: swirl1cmd= z <- qnorm(.95)
+  Hint: Type z <- qnorm(.95) at the command prompt.
+
+- Class: cmd_question
+  Output: Run pnorm now with the quantile 30+z, mean=30, and lower.tail=FALSE. We've specified sigma and n so that the standard deviation of the sample mean is 1. 
+  CorrectAnswer: pnorm(30+z,mean=30,lower.tail=FALSE)
+  AnswerTests: swirl1cmd= pnorm(30+z,mean=30,lower.tail=FALSE)
+  Hint: Type pnorm(30+z,mean=30,lower.tail=FALSE) at the command prompt.
+
+- Class: cmd_question
+  Output: That's not surprising, is it? With the mean set to mu_0 the two distributions, null and alternative, are the same and power=alpha. Now run pnorm now with the quantile 30+z, mean=32, and lower.tail=FALSE. 
+  CorrectAnswer: pnorm(30+z,mean=32,lower.tail=FALSE)
+  AnswerTests: swirl1cmd= pnorm(30+z,mean=32,lower.tail=FALSE)
+  Hint: Type pnorm(30+z,mean=32,lower.tail=FALSE) at the command prompt.
+
+- Class: text
+  Output: See how this is much more powerful? 64% as opposed to 5%. When the sample mean is quite different from (many standard errors greater than)  the mean hypothesized by the null hypothesis, the probability of rejecting H_0 when it is false is much higher. That is power!
+
+- Class: figure 
+  Output: Let's look again at the portly distributions.
+  Figure: twoDistros_fat.R
+  FigureType: new
+
+- Class: mult_question
+  Output: With this standard deviation=2 (fatter distribution) will power be greater or less than with the standard deviation=1?
+  AnswerChoices: greater; less than; the same 
+  CorrectAnswer:  less than
+  AnswerTests: word=less than
+  Hint:  A greater standard deviation means more variability in the data so the test will be less powerful.
+
+- Class: cmd_question
+  Output:  To see this, run pnorm now with the quantile 30+z, mean=32 and sd=1. Don't forget to set lower.tail=FALSE so you get the right tail.
+  CorrectAnswer: pnorm(30+z,mean=32,sd=1,lower.tail=FALSE)
+  AnswerTests: swirl1cmd= pnorm(30+z,mean=32,sd=1,lower.tail=FALSE)
+  Hint: Type pnorm(30+z,mean=32,sd=1,lower.tail=FALSE) at the command prompt.
+
+- Class: cmd_question
+  Output:  Now run pnorm with the quantile 30+z*2, mean=32 and sd=2. Don't forget to set lower.tail=FALSE so you get the right tail.
+  CorrectAnswer: pnorm(30+z*2,mean=32,sd=2,lower.tail=FALSE)
+  AnswerTests: swirl1cmd= pnorm(30+z*2,mean=32,sd=2,lower.tail=FALSE)
+  Hint: Type pnorm(30+z*2,mean=32,sd=2,lower.tail=FALSE) at the command prompt.
+
+
+- Class: mult_question
+  Output: See the power drain from 64% to 26% ? Let's review some basic facts about power. We saw before in our pictures that the power of the test depends on mu_a. When H_a specifies that mu > mu_0, then as mu_a grows and exceeds mu_0 increasingly, what happens to power?
+  AnswerChoices: it increases; it decreases; it doesn't change
+  CorrectAnswer: it increases
+  AnswerTests: word=it increases
+  Hint: Remember the different distributions and running pnorm? As mu_a got bigger so did the pnorm result.
+
+- Class: figure
+  Output: Here's another question. Recall our power curves from before.
+  Figure: powerCurve_n.R
+  FigureType: new 
+
+- Class: mult_question
+  Output: As the sample size increases, what happens to power?
+  AnswerChoices: it increases; it decreases; it doesn't change
+  CorrectAnswer: it increases
+  AnswerTests: word=it increases
+  Hint: Look at the picture!
+
+
+- Class: figure
+  Output: Here's another one. More power curves.
+  Figure: powerCurve_sigma.R
+  FigureType: new 
+
+- Class: mult_question
+  Output: As variance increases, what happens to power?
+  AnswerChoices: it increases; it decreases; it doesn't change
+  CorrectAnswer: it decreases
+  AnswerTests: word=it decreases
+  Hint: Look at the picture!
+
+- Class: figure
+  Output: Here's another one. And even more power curves.
+  Figure: powerCurve_alpha.R
+  FigureType: new 
+
+- Class: mult_question
+  Output: As alpha increases, what happens to power?
+  AnswerChoices: it increases; it decreases; it doesn't change
+  CorrectAnswer: it increases
+  AnswerTests: word=it increases
+  Hint: Look at the picture! 
+
+- Class: text 
+  Output: If H_a proposed that mu != mu_0 we would calculate the one sided power using alpha / 2 in the direction of mu_a (either less than or greater than mu_0). This is only approximately right, it excludes the probability of getting a large test statistic in the opposite direction of the truth.
+
+- Class: mult_question
+  Output: Since power goes up as alpha gets larger would the power of a one-sided test be greater or less than the power of the associated two sided test?
+  AnswerChoices: greater; less than; they're the same
+  CorrectAnswer: greater
+  AnswerTests: word=greater
+  Hint: The quantity alpha is bigger than alpha/2 so it's got more power. 
+
+- Class: mult_question
+  Output: Finally, if H_a specified that mu < mu_0 could we still do the same kind of power calculations?
+  AnswerChoices: Yes; No
+  CorrectAnswer: Yes
+  AnswerTests: word=Yes
+  Hint: We just have to look at the right tail and flip all our reasoning.
+
+- Class: text
+  Output: Suppose H_a says that mu > mu_0. Then power = 1 - beta = Prob ( X' > mu_0 + z_(1-alpha) * sigma/sqrt(n)) assuming that X'~ N(mu_a,sigma^2/n). Which quantities do we know in this statement, given the context of the problem? Let's work through this.
+
+- Class: mult_question
+  Output: What does the null hypothesis H_0 tell us that the population mean equals?
+  AnswerChoices: mu_0; mu_a; beta; alpha
+  CorrectAnswer: mu_0
+  AnswerTests: word=mu_0
+  Hint: H_0 simply proposes a null mean.
+
+- Class: mult_question
+  Output: After the null mean mu_0 is proposed what does the designer of the hypothesis test specify in order to reject or fail-to-reject H_0? In other words, what is the level size of the test?
+  AnswerChoices: mu_0; mu_a; beta; alpha
+  CorrectAnswer: alpha
+  AnswerTests: word=alpha
+  Hint: The level size is indicated by a Greek letter.
+
+- Class: text
+  Output: So we know that  the quantities mu_0 and alpha are specified by the test designer. In the statement 1 - beta = Prob( X' > mu_0 + z_(1-alpha) * sigma/sqrt(n)) given mu_a > mu_0, mu_0 and alpha are specified, and X' depends on the data. The other four quantities, (beta, sigma, n, and mu_a), are all unknown. 
+
+- Class: text
+  Output: It should be obvious that specifying any three of these unknowns will allow us to solve for the missing fourth. Usually, you only try to solve for power (1-beta) or the sample size n. 
+
+- Class: text
+  Output: An interesting point is that  power doesn't need mu_a, sigma and n individually.  Instead only sqrt(n)*(mu_a - mu_0) /sigma is needed. The quantity (mu_a - mu_0) / sigma is called the EFFECT SIZE. This is the difference in the means in standard deviation units. It is unit free so it can be interpreted in different settings.
+
+
+- Class: mult_question
+  Output: What do you think will happen if you doubled sd to 2 and ran the same test?
+  AnswerChoices: delta will double; delta will halve; delta won't change
+  CorrectAnswer: delta will double
+  AnswerTests: word=delta will double
+  Hint: Since you're doubling the denominator (sd) you have to double the numerator (delta) in order to keep the effect size constant.
+
+- Class: mult_question
+  Output: 1. The level of a test is specified by what?
+  AnswerChoices:  alpha; beta; gamma; delta; None of the others
+  CorrectAnswer: alpha
+  AnswerTests: word=alpha
+  Hint: The level refers to the probability of rejecting  the null hypothesis when it is true. This is the first Greek letter.
+
+- Class: mult_question
+  Output: 2. What is a Type II error?
+  AnswerChoices:   rejecting a true hypothesis;  rejecting a false hypothesis;  accepting a true hypothesis; accepting a false hypothesis
+  CorrectAnswer: accepting a false hypothesis
+  AnswerTests: word=accepting a false hypothesis
+  Hint: Only two of the choices are errors. Eliminate those and then eliminate the Type I error.
+
+- Class: mult_question
+  Output: 3. What is power?
+  AnswerChoices: thrilling; alpha; beta; gamma; delta; None of the others
+  CorrectAnswer: None of the others
+  AnswerTests: word=None of the others
+  Hint: Power is 1-beta. Is that in the list?
+
+- Class: mult_question
+  Output: 4. You're a perfectionist designing an experiment and you want both alpha and beta to be small. Can they both be 0 for this single test?
+  AnswerChoices: Yes; No  
+  CorrectAnswer: No
+  AnswerTests: word=No
+  Hint: If alpha=0, then you ALWAYS fail to reject (that is, you accept) H_0; if H_0 is false, beta=1. Similarly if beta=0, you ALWAYS reject H_0; if H_0 is true then alpha=1. 
+
+- Class: mult_question
+  Output: 5. Suppose H_0 proposes mu = mu_0 and H_a proposes that mu < mu_0. You'll test a series of mu_a with power != alpha. Which of the following is NOT true?
+  AnswerChoices: mu_0-mu_a > 0;  mu_a-mu_0 < 0; mu_a-mu_0=0 ; huh?
+  CorrectAnswer: mu_a-mu_0=0
+  AnswerTests: word=mu_a-mu_0=0
+  Hint: As in the case in which H_a proposes that mu > mu_0, when mu_a=mu_0, alpha=power. This was excluded in the problem statement so mu_a=mu_0 cannot be true in this case. 
+
+- Class: mult_question
+  Output: 6. Suppose H_0 proposes mu = mu_0 and H_a proposes that mu < mu_0. Which of the following is true?
+  AnswerChoices: the smaller mu_0-mu_a the more powerful the test; the smaller mu_a-mu_0 the more powerful the test; mu_0=mu_a maximizes the power  
+  CorrectAnswer: the smaller mu_a-mu_0 the more powerful the test
+  AnswerTests: word=the smaller mu_a-mu_0 the more powerful the test
+  Hint: Here mu_a < mu_0 and the smaller mu_a-mu_0 is, the easier it is to discriminate between mu_a and mu_0.
+
+- Class: mult_question
+  Output: 7. Which expression represents the size effect? 
+  AnswerChoices: (mu_a - mu_0) / sigma; (mu_a - mu_0) / n; (mu_a - mu_0) / sqrt(sigma); (mu_a - mu_0) / sqrt(n)
+  CorrectAnswer: (mu_a - mu_0) / sigma
+  AnswerTests: word=(mu_a - mu_0) / sigma
+  Hint: The size effect is the distance between the two proposed means in standard deviation units.  
+
+- Class: mult_question
+  Output: 8. True or False? More power is better than less power.
+  AnswerChoices: True; False
+  CorrectAnswer: True
+  AnswerTests: word=True
+  Hint: Power is good.  
+
+- Class: mult_question
+  Output: 9. True or False? A larger beta (call it beta_max) is more powerful than a smaller beta.
+  AnswerChoices: True; False
+  CorrectAnswer: False
+  AnswerTests: word=False
+  Hint: Recall that beta is the probability of an error (Type II), so you'd like a smaller beta.  
+
+- Class: mult_question
+  Output: 10. True or False? The larger the sample size the less powerful the test.
+  AnswerChoices: True; False
+  CorrectAnswer: False
+  AnswerTests: word=False
+  Hint: It's usually better to have more data to work with.  
+
+- Class: text
+  Output: Congrats! You finished this powerful lesson. You learned about type I and type II errors,
+    power, and sample size calculations.We hope you feel emPOWERED.
